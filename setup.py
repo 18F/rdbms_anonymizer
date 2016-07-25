@@ -19,28 +19,28 @@ test_requirements = [
 ]
 
 setup(
-    name='rdbms_anonymizer',
+    name='rdbms_anonymize',
     version='0.1.0',
-    description="Replace PII in a database with fictional data",
+    description="Anonymize relational database by replacing PII with fake data",
     long_description=readme + '\n\n' + history,
     author="18F",
     author_email='catherine.devlin@gsa.gov',
-    url='https://github.com/18F/rdbms_anonymizer',
+    url='https://github.com/18F/rdbms_anonymize',
     packages=[
-        'rdbms_anonymizer',
+        'rdbms_anonymize',
     ],
-    package_dir={'rdbms_anonymizer':
-                 'rdbms_anonymizer'},
+    package_dir={'rdbms_anonymize':
+                 'rdbms_anonymize'},
     entry_points={
         'console_scripts': [
-            'rdbms_anonymizer=rdbms_anonymizer.cli:main'
+            'rdbms_anonymize=rdbms_anonymize.cli:main'
         ]
     },
     include_package_data=True,
     install_requires=requirements,
     license="CC0 license",
     zip_safe=False,
-    keywords='rdbms_anonymizer',
+    keywords='rdbms_anonymize',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',

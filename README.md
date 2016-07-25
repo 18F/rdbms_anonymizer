@@ -1,42 +1,56 @@
-# rdbms_anonymizer
+# rdbms_anonymize
 
-[![PyPI Status](https://img.shields.io/pypi/v/rdbms_anonymizer.svg)](https://pypi.python.org/pypi/rdbms_anonymizer)
-[![Build Status](https://img.shields.io/travis/18F/rdbms_anonymizer.svg?branch=master)](https://travis-ci.org/18F/rdbms_anonymizer)
-[![Coverage Status](https://coveralls.io/repos/github/18F/rdbms_anonymizer.svg?branch=master)](https://coveralls.io/github/18F/rdbms_anonymizer?branch=master)
-[![Code Climate](https://codeclimate.com/github/18F/rdbms_anonymizer.svg)](https://codeclimate.com/github/18F/rdbms_anonymizer)
-[![Accessibility](https://continua11y.18f.gov/18F/rdbms_anonymizer?branch=master)](https://continua11y.18f.gov/18F/rdbms_anonymizer)
+[![PyPI Status](https://img.shields.io/pypi/v/rdbms_anonymize.svg)](https://pypi.python.org/pypi/rdbms_anonymize)
+[![Build Status](https://img.shields.io/travis/18F/rdbms_anonymize.svg?branch=master)](https://travis-ci.org/18F/rdbms_anonymize)
+[![Coverage Status](https://coveralls.io/repos/github/18F/rdbms_anonymize.svg?branch=master)](https://coveralls.io/github/18F/rdbms_anonymize?branch=master)
+[![Code Climate](https://codeclimate.com/github/18F/rdbms_anonymize.svg)](https://codeclimate.com/github/18F/rdbms_anonymize)
+[![Accessibility](https://continua11y.18f.gov/18F/rdbms_anonymize?branch=master)](https://continua11y.18f.gov/18F/rdbms_anonymize)
 
-
-<a href="https://pypi.python.org/pypi/rdbms_anonymizer">
-  <img src="https://img.shields.io/pypi/v/rdbms_anonymizer.svg"
-  alt="PyPI shield">
-</a>
-
-<a href="https://travis-ci.org/18F/rdbms_anonymizer">
-  <img src="https://img.shields.io/travis/18F/rdbms_anonymizer.svg"
-  alt="Travis shield">
-</a>
-
-<a href="https://rdbms-anonymizer.readthedocs.io/en/latest/?badge=latest ">
-  <img src=https://readthedocs.org/projects/rdbms-anonymizer/badge/?version=latest"
-  alt="ReadTheDocs shield">
-</a>
-
-Replace PII in a database with fictional data
+Anonymize relational database by replacing PII with fake data
 
 
-* Documentation: https://rdbms-anonymizer.readthedocs.io.
+* Documentation: https://rdbms-anonymize.readthedocs.io.
+
+# Using
+
+    >>> import sqlalchemy as sa
+    >>> engine = sa.create_engine('postgresql://:@/shakes')
+    >>> meta = sa.MetaData()
+    >>> meta.reflect(bind=engine)
+    >>> para_table = meta.tables['paragraph']
+    >>> sessionmaker = sa.orm.sessionmaker()
+    >>> sessionmaker.configure(bind=engine)
+    >>> session = sessionmaker()
+
+    >>> from rdbms_anonymize.rdbms_anonymize import anon
+    >>> qry = session.query(para_table)
+    >>> qry.filter_by(paragraphid=630879).first().charid
+    'VIOLA'
+    >>> anon(para_table.c.charid, session=session)
+    >>> session.commit()
+    >>> qry.filter_by(paragraphid=630879).first().charid
+    >>> anon(para_table.c.charid, session=session, type='Name')
+    >>> qry.filter_by(paragraphid=630879).first().charid
 
 
-## Features
 
-* TODO
+## TODO
+
+- Check for pl/python faker; use it for one-pass update
+- http://docs.sqlalchemy.org/en/latest/changelog/migration_09.html#new-for-update-support-on-select-query
+
 
 ## Credits
 
 This package was created with [Cookiecutter](https://github.com/audreyr/cookiecutter)
 and the [18F/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage)
 project template.
+
+## Limitations
+
+- Duplicate rows in a table will still exactly match after anonymizing
+  (all identical rows will have identical fake data).  A primary key
+  prevents rows from being duplicates.
 
 ## Public domain
 

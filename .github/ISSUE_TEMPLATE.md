@@ -1,4 +1,4 @@
-* rdbms_anonymizer version:
+* rdbms_anonymize version:
 * Python version:
 * Operating System:
 

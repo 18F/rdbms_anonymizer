@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install rdbms_anonymizer, run this command in your terminal:
+To install rdbms_anonymize, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install rdbms_anonymizer
+    $ pip install rdbms_anonymize
 
-This is the preferred method to install rdbms_anonymizer, as it will always install the most recent stable release. 
+This is the preferred method to install rdbms_anonymize, as it will always install the most recent stable release. 
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for rdbms_anonymizer can be downloaded from the `Github repo`_.
+The sources for rdbms_anonymize can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/18F/rdbms_anonymizer
+    $ git clone git://github.com/18F/rdbms_anonymize
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl  -OL https://github.com/18F/rdbms_anonymizer/tarball/master
+    $ curl  -OL https://github.com/18F/rdbms_anonymize/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/18F/rdbms_anonymizer
-.. _tarball: https://github.com/18F/rdbms_anonymizer/tarball/master
+.. _Github repo: https://github.com/18F/rdbms_anonymize
+.. _tarball: https://github.com/18F/rdbms_anonymize/tarball/master

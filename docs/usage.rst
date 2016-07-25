@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use rdbms_anonymizer in a project::
+To use rdbms_anonymize in a project::
 
-    import rdbms_anonymizer
+    import rdbms_anonymize
